@@ -1,8 +1,25 @@
+CREATE DATABASE peliculas;
+USE `peliculas`;
+/****** Object:  Table `peliculas`.`imagen` ******/
+CREATE TABLE `peliculas`.`imagen`(
+	`id_imagen` bigint NOT NULL AUTO_INCREMENT
+	,`id_estado_clase` bigint NULL
+	,`nombre_imagen` varchar(250) NULL
+	,`path` varchar(250) NULL
+	,`url` varchar(250) NULL
+	,PRIMARY KEY
+	(
+		`id_imagen` ASC
+	));
+	
 CREATE TABLE `peliculas`.`rol` (
-  `id_rol` BIGINT NOT NULL AUTO_INCREMENT,
-  `id_estado_clase` BIGINT NULL,
-  `descripcion` VARCHAR(45) NULL,
-  PRIMARY KEY (`id_rol`));
+	`id_rol` BIGINT NOT NULL AUTO_INCREMENT
+	,`id_estado_clase` BIGINT NULL
+	,`descripcion` VARCHAR(45) NULL
+	,PRIMARY KEY 
+	(
+		`id_rol`
+	));
 
 CREATE TABLE `peliculas`.`persona`(
 	`id_persona` bigint NOT NULL AUTO_INCREMENT,
@@ -69,11 +86,4 @@ CREATE TABLE `peliculas`.`estado_clase`(
 		`id_estado_clase` ASC
 	));
 	
-CREATE TABLE `peliculas`.`imagen`(
-	`id_imagen` bigint NOT NULL AUTO_INCREMENT
-	,`nombre_archivo` varchar(250) NULL
-	,`path_archivo` varchar(250) NULL
-	,`url_archivo` varchar(250) NULL
-	,PRIMARY KEY(
-		`id_imagen` ASC
-	));
+
