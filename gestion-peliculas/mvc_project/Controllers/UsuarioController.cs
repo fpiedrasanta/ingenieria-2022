@@ -185,7 +185,7 @@ namespace mvc_project.Controllers
                     }));
                 }
             }
-            catch (System.Exception e)
+            catch (System.Exception)
             {
                 return Json(JsonReturn.ErrorWithSimpleMessage("Hubo un error"));
             }
@@ -257,13 +257,17 @@ namespace mvc_project.Controllers
 
             try
             {
-                using (DAOFactory daoFactory = new DAOFactory())
+                using (DAOFactory df = new DAOFactory())
                 {
-                    entity_library.Sistema.Usuario usuario = daoFactory.DAOUsuario.ObtenerUsuario(usuarioModel.id);
+                    entity_library.Sistema.Usuario usuario = df.DAOUsuario.ObtenerUsuario(usuarioModel.id);
+                    
+                    entity_library.Estados.EstadoClase activo =
+                        df.DAOEstadoClase.ObtenerEstadoClase(entity_library.Comun.CodigoEstadoClase.Activo);
 
                     if(usuario == null)
                     {
                         usuario = new entity_library.Sistema.Usuario();
+                        usuario.EstadoClase = activo;
                     }
 
                     usuario.NombreCompleto = usuarioModel.nombrePersona;
@@ -276,9 +280,9 @@ namespace mvc_project.Controllers
                         usuario.Password = usuarioModel.password;
                     }
 
-                    daoFactory.BeginTrans();
-                    daoFactory.DAOUsuario.Guardar(usuario);
-                    daoFactory.Commit();
+                    df.BeginTrans();
+                    df.DAOUsuario.Guardar(usuario);
+                    df.Commit();
 
                     return Json(JsonReturn.SuccessWithoutInnerObject());
                 }
@@ -305,13 +309,17 @@ namespace mvc_project.Controllers
                 {
                     entity_library.Sistema.Usuario usuario = df.DAOUsuario.ObtenerUsuario(id);
 
+                    entity_library.Estados.EstadoClase baja = 
+                        df.DAOEstadoClase.ObtenerEstadoClase(entity_library.Comun.CodigoEstadoClase.Baja);
+
                     if(usuario == null)
                     {
                         return Json(JsonReturn.ErrorWithSimpleMessage("El usuario no existe"));
                     }
 
                     df.BeginTrans();
-                    df.DAOUsuario.EliminarUsuario(usuario);
+                    usuario.EstadoClase = baja;
+                    df.DAOUsuario.Guardar(usuario);
                     df.Commit();
                 }
 

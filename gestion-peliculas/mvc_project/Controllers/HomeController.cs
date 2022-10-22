@@ -44,7 +44,13 @@ namespace mvc_project.Controllers
             
             using(dao_library.DAOFactory df = new dao_library.DAOFactory())
             {
-                entity_library.Sistema.Usuario usuario = df.DAOUsuario.ObtenerUsuario(loginModel.userName, loginModel.password);
+                entity_library.Estados.EstadoClase activo =
+                    df.DAOEstadoClase.ObtenerEstadoClase(entity_library.Comun.CodigoEstadoClase.Activo);
+
+                entity_library.Sistema.Usuario usuario = df.DAOUsuario.ObtenerUsuario(
+                    activo, 
+                    loginModel.userName, 
+                    loginModel.password);
 
                 if(usuario == null)
                 {

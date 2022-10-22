@@ -21,12 +21,16 @@ namespace dao_library.Sistema
 			}
 		}
 
-		public Usuario ObtenerUsuario(string userName, string password)
+		public Usuario ObtenerUsuario(
+			entity_library.Estados.EstadoClase estadoClase, 
+			string userName, 
+			string password)
         {
             ICriteria lista = this.session.CreateCriteria<entity_library.Sistema.Usuario>("Usuario");
 
 			lista.Add(Restrictions.Eq("Usuario.NombreUsuario", userName));
 			lista.Add(Restrictions.Eq("Usuario.Password", password));
+			lista.Add(Restrictions.Eq("Usuario.EstadoClase", estadoClase));
 
 			IList<entity_library.Sistema.Usuario> retorno = lista.List<entity_library.Sistema.Usuario>();
 
