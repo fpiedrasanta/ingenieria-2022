@@ -22,7 +22,8 @@ namespace mvc_project.Controllers
                 new LoginViewModel
             {
                 isLogged = true,
-                message = ""
+                message = "",
+                userName = ""
             };
 
             return View(loginViewModel);
@@ -38,7 +39,7 @@ namespace mvc_project.Controllers
             {
                 loginViewModel.isLogged = false;
                 loginViewModel.message = "Debe ingresar un nombre de usuario o password";
-
+                loginViewModel.userName = string.IsNullOrEmpty(loginModel.userName) ? "" : loginModel.userName;
                 return View("~/Views/Home/Index.cshtml", loginViewModel);
             }
             
@@ -56,7 +57,7 @@ namespace mvc_project.Controllers
                 {
                     loginViewModel.isLogged = false;
                     loginViewModel.message = "Nombre de usuario o contraseña incorrecto";
-
+                    loginViewModel.userName = loginModel.userName;
                     return View("~/Views/Home/Index.cshtml", loginViewModel);
                 }
 
