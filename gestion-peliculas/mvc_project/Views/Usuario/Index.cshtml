@@ -3,30 +3,33 @@
     Layout = "_Layout";
 }
 
-<button class="btn btn-primary" onclick="nuevoUsuario()">Nuevo usuario</button>
-<br>
-<br>
-<div class="row">
-    <table width="100%" 
-            class="table" 
-            id="grid_usuarios" 
-            style="table-layout: fixed; word-break: break-word !important;">
-        <thead class="thead-default">
-            <tr>
-                <th>Nombre</th>
-                <th>Apellido</th>
-                <th>Nombre de usuario</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
-</div>
+<section class="main-container" >
+    <div class="row" style="margin: 40px 0px 20px 0px;">
+        <button class="btn btn-primary" onclick="nuevoUsuario()">Nuevo usuario</button>
+    </div>
 
+    <div class="row">
+        <table width="100%" 
+               class="table" 
+               id="grid_usuarios" 
+               style="table-layout: fixed; word-break: break-word !important; color: white; border-color: white; border-style: solid; border-width:1px;">
+            <thead class="thead-default">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Nombre de usuario</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+</section>
 <script>
     $(document).ready(function () {
         var columns = [{
+            width: "40%",
             "data": "nombrePersona",
             "name": "nombrePersona",
             "searchable": true,
@@ -34,6 +37,7 @@
             "orderable": true,
             defaultContent: ""
         }, {
+            width: "40%",
             "data": "apellidoPersona",
             "name": "apellidoPersona",
             "searchable": true,
@@ -41,6 +45,7 @@
             "orderable": true,
             defaultContent: ""
         }, {
+            width: "20%",
             "data": "nombreUsuario",
             "name": "nombreUsuario",
             "searchable": true,
@@ -48,6 +53,7 @@
             "orderable": true,
             defaultContent: ""
         }, {
+            width: "100px",
             data: function (row, type, set) {
                 var s = '';
                 

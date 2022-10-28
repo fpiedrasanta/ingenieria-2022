@@ -1,10 +1,11 @@
-﻿<!DOCTYPE html>
-<html lang="en">
+﻿<html>
     <head>
         <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>@ViewData["Title"] - Uso de componentes</title>
-        
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Netflix</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js" integrity="sha384-3LK/3kTpDE/Pkp8gTNp2gR/2gOiwQ6QaO7Td0zV76UFJVhqLl4Vl3KL1We6q6wR9" crossorigin="anonymous"></script>
+
         <link rel='stylesheet' href='@Url.Content("~/lib/bootstrap/dist/css/bootstrap.css")' />
         <link rel='stylesheet' href='@Url.Content("~/css/site.css")' />
         <link rel='stylesheet' href='@Url.Content("~/css/modal.css")' />
@@ -28,44 +29,44 @@
         <script src='@Url.Content("~/js/combo.js")'></script>
         <script src='@Url.Content("~/js/messages.js")'></script>
         <script src='@Url.Content("~/js/site.js")'></script>
+
+        <link rel="stylesheet" type="text/css" href="@Url.Content("~/css/style.css")">
     </head>
     <body>
-        <header>
-            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-                <div class="container">
-                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Uso de componentes</a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                            aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                        <ul class="navbar-nav flex-grow-1">
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Panel" asp-action="Index">Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Usuario" asp-action="Index">Usuarios</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-        </header>
-        <div class="container">
-            <main role="main" class="pb-3">
-                @RenderBody()
-            </main>
+        <div class="wrapper">
+
+            <!-- HEADER -->
+            <header>
+                <div class="netflixLogo">
+                    <a id="logo" href="#home"><img src="https://github.com/carlosavilae/Netflix-Clone/blob/master/img/logo.PNG?raw=true" alt="Logo Image"></a>
+                </div>      
+                <nav class="main-nav">                
+                    <a href="#home">Home</a>
+                    <a href="#tvShows">TV Shows</a>
+                    <a href="#movies">Movies</a>
+                    <a href="#originals">Originals</a>
+                    <a href="#">Recently Added</a>
+                    <a target="_blank" href="https://codepen.io/cb2307/full/NzaOrm">Portfolio</a>        
+                </nav>
+                <nav class="sub-nav">
+                    <a href="#"><i class="fas fa-search sub-nav-logo"></i></a>
+                    <a href="#"><i class="fas fa-bell sub-nav-logo"></i></a>
+                    <a href="#">Account</a>        
+                </nav>      
+            </header>
+            <!-- END OF HEADER -->
+            
+            @RenderBody()
+            
+            <footer>
+                <p>&copy 1997-2018 Netflix, Inc.</p>
+                <p>Carlos Avila &copy 2018</p>
+            </footer>
         </div>
 
-        <footer class="border-top footer text-muted">
-            <div class="container">
-                &copy; 2022 - Peliculas - MIT Licence
-            </div>
-        </footer>
-        
         <partial name="_Modal" />
     </body>
-    
+
     <script>
         var urlContent = '@Url.Content("~/")';
     </script>
