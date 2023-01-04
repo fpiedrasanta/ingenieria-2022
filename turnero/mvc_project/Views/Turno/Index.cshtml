@@ -1,0 +1,96 @@
+﻿@model mvc_project.Models.TurnoViewModel
+@{
+    ViewData["Title"] = "Turno";
+}
+
+@if(Model.NumeroSemana > 0)
+{
+    <a href="~/Turno/Index?numeroSemana=@(Model.NumeroSemana-1)">Atras</a>
+}
+
+<a href="~/Turno/Index?numeroSemana=@(Model.NumeroSemana+1)">Siguiente</a>
+
+@Model.FechaDesde | @Model.FechaHasta
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Domingo</th>
+            <th>Lunes</th>
+            <th>Martes</th>
+            <th>Miercoles</th>
+            <th>Jueves</th>
+            <th>Viernes</th>
+            <th>Sabado</th>
+        </tr>
+    </thead>
+    <tbody>
+            @foreach (mvc_project.Models.FilaHorario filaHorario in Model.Horarios)
+            {
+                <tr>
+                    @if(filaHorario.HorarioDomingo != null)
+                    {
+                        <td class="btn-success">@Html.Raw(filaHorario.HorarioDomingo.Hora + "<br>" + filaHorario.HorarioDomingo.Especialidad)</td>
+                    }
+                    else
+                    {
+                        <td> </td>
+                    }
+
+                    @if(filaHorario.HorarioLunes != null)
+                    {
+                        <td class="btn-success">@Html.Raw(filaHorario.HorarioLunes.Hora + "<br>" + filaHorario.HorarioLunes.Especialidad)</td>
+                    }
+                    else
+                    {
+                        <td> </td>
+                    }
+
+                    @if(filaHorario.HorarioMartes != null)
+                    {
+                        <td class="btn-success">@Html.Raw(filaHorario.HorarioMartes.Hora + "<br>" + filaHorario.HorarioMartes.Especialidad)</td>
+                    }
+                    else
+                    {
+                        <td> </td>
+                    }
+
+                    @if(filaHorario.HorarioMiercoles != null)
+                    {
+                        <td class="btn-success">@Html.Raw(filaHorario.HorarioMiercoles.Hora + "<br>" + filaHorario.HorarioMiercoles.Especialidad)</td>
+                    }
+                    else
+                    {
+                        <td> </td>
+                    }
+
+                    @if(filaHorario.HorarioJueves != null)
+                    {
+                        <td class="btn-success">@Html.Raw(filaHorario.HorarioJueves.Hora + "<br>" + filaHorario.HorarioJueves.Especialidad)</td>
+                    }
+                    else
+                    {
+                        <td> </td>
+                    }
+
+                    @if(filaHorario.HorarioViernes != null)
+                    {
+                        <td class="btn-success">@Html.Raw(filaHorario.HorarioViernes.Hora + "<br>" + filaHorario.HorarioViernes.Especialidad)</td>
+                    }
+                    else
+                    {
+                        <td> </td>
+                    }
+
+                    @if(filaHorario.HorarioSabado != null)
+                    {
+                        <td class="btn-success">@Html.Raw(filaHorario.HorarioSabado.Hora + "<br>" + filaHorario.HorarioSabado.Especialidad)</td>
+                    }
+                    else
+                    {
+                        <td> </td>
+                    }
+                </tr>
+            }
+            
+    </tbody>
+</table>
